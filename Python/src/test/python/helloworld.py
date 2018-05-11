@@ -1,3 +1,13 @@
+'''
+This is based on the script from the video
+"Learn Python in 60 Minutes from Java"
+by Krohn - Education
+https://www.youtube.com/watch?v=xLovcfIugy8
+
+I personally feel like this was a great video, and this script pretty much covers the basics of using Python for any
+one who has predominately used Java.
+'''
+
 print("hello " + "world")
 
 # single line coment
