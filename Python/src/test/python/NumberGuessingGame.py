@@ -1,3 +1,9 @@
+'''
+Alec McDaugale
+This is a basic number guessing game i created for fun. There is a class to get the max num, create a random num, and
+check if you can guess the num. The game is in a never ending loop that allows you to select a max number, then it loops
+the game until you get the number right. Now you may select another max num and play as much as you want.
+'''
 import random
 
 
