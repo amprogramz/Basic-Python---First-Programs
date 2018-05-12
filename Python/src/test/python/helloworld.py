@@ -57,6 +57,8 @@ print("Substring 1:", n[1:3])
 print("Substring 2:", n[-3:])
 # contains
 print("Contains:", ("ord" in n))
+# print word 99 times
+print(n * 99)
 
 
 # Arays
