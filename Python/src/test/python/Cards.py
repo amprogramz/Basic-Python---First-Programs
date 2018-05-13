@@ -10,60 +10,45 @@ class BlackJack:
         self._deck = Deck()
         self._dealer = Player()
         self._player = Player()
-        '''self._cards = []
-        self._cardsvalue = []
-        #self._total
-        self._dealercards = []
-        self._dealercardsvalue = []
-        #self._dealertotal
-        #self.deal_cards(2)'''
 
-    def deal_card(self, cardset, value):
-        num = random.randint(0, 12)
-        cardset.append(self._deck.get_cards(num))
-        value.append(self._deck.get_values(num))
-        #total += int(value[len(value)-1])
+    def get_card(self, user):
+        index = random.randint(0, 51)
+        user.set_index(index)
+        user.set_cards(self._deck.get_card(index))
 
     def deal_cards(self, num):
         for index in range(num):
-            self.deal_card(self._cards, self._cardsvalue)
-            self.deal_card(self._dealercards, self._dealercardsvalue)
+            self.get_card(self._dealer)
+            self.get_card(self._player)
 
-    def get_cards(self):
-        return self._cards
+    def get_player_cards(self):
+        return self._player
 
     def get_dealer_cards(self):
-        return self._dealercards
+        return self._dealer
 
-    def get_total(self, value):
+    def get_total(self, user):
         total = 0
-        for val in value:
-            total += val
+        for index in range(len(user.get_cards())):
+            total += user.get_card(index).get_value()
         return total
-
-
-    '''def get_total(self):
-        return self._total
-    def get_dealer_total(self):
-        return self._dealertotal'''
 
     def to_string(self):
         print("Dealer")
-        print("Total:", self.get_total(self._dealercardsvalue))
-        for val in range(len(self._dealercards)):
-            print(self._dealercards[val], end=" ")
+        print("Total:", self.get_total(self._dealer))
+        for index in range(len(self._dealer.get_cards())):
+            print(self._dealer.get_card(index).get_card_face(), end=" ")
         print("\n")
-        for val in range(len(self._cards)):
-            print(self._cards[val], end=" ")
-        print("\nTotal:", self.get_total(self._cardsvalue))
+        for index in range(len(self._player.get_cards())):
+            print(self._player.get_card(index).get_card_face(), end=" ")
+        print("\nTotal:", self.get_total(self._player))
         print("Player")
 
 
 class Player:
     def __init__(self):
-        self._suit
         self._cards = []
-        self._value = []
+        self._index = []
 
     def set_cards(self, card):
         self._cards.append(card)
@@ -71,17 +56,15 @@ class Player:
     def get_cards(self):
         return self._cards
 
-    def set_value(self, value):
-        self._value.append(value)
+    def get_card(self, index):
+        return self._cards[index]
 
-    def get_value(self):
-        return self._value
+    def set_index(self, index):
+        self._index.append(index)
 
-    def set_suit(self, suit):
-        self._suit(suit)
+    def get_index(self):
+        return self._index
 
-    def get_suit(self):
-        return self._suit
 
 class Deck:
     def __init__(self):
@@ -94,16 +77,10 @@ class Deck:
                 self._deck.append(Card(suit, self._cards[index], self._values[index]))
 
     def get_deck(self):
-        return  self._deck
+        return self._deck
 
-    def get_values(self, index):
-        return self._values[index]
-
-    def get_cards(self, index):
-        return self._cards[index]
-
-    def get_suit(self, index):
-        return self._suit[index]
+    def get_card(self, index):
+        return self._deck[index]
 
     def to_string(self):
         for index in range(len(self._deck)):
@@ -120,20 +97,20 @@ class Card:
     def get_value(self):
         return self._value
 
-    def get_card(self):
+    def get_card_face(self):
         return self._card
 
     def get_suit(self):
         return self._suit
 
     def to_string(self):
-        print(self.get_suit(), self.get_card(), self.get_value())
+        print(self.get_suit(), self.get_card_face(), self.get_value())
 
 
-deck = Deck()
-deck.to_string()
-#game = BlackJack()
-#game.deal_cards(2)
+#deck = Deck()
+#deck.to_string()
+game = BlackJack()
+game.deal_cards(2)
 
-#game.to_string()
+game.to_string()
 
