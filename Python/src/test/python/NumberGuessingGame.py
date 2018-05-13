@@ -26,7 +26,7 @@ class NumberGame:
 
     def compare_num(self, num):
         if num == self._ranomnum:
-            print("Congradulations, you guessed the number.")
+            print("Congratulations, you guessed the number.")
             return True
         elif num < 0 or num > self._maxnum:
             print("Guess a number between 0 and", self._maxnum)
