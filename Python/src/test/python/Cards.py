@@ -16,6 +16,9 @@ class BlackJack:
         user.set_index(index)
         user.set_cards(self._deck.get_card(index))
 
+    def deal_card(self, user):
+        self.get_card(user)
+
     def deal_cards(self, num):
         for index in range(num):
             self.get_card(self._dealer)
@@ -28,21 +31,55 @@ class BlackJack:
         return self._dealer
 
     def get_total(self, user):
-        total = 0
+        total1 = 0
+        total2 = 0
         for index in range(len(user.get_cards())):
-            total += user.get_card(index).get_value()
-        return total
+            if user.get_card(index).get_value() == 1:
+                total1 += user.get_card(index).get_value() + 10
+            else:
+                total1 += user.get_card(index).get_value()
+
+        for index in range(len(user.get_cards())):
+            if user.get_card(index).get_value() == 1 and total1 <= 21:
+                total2 += user.get_card(index).get_value() + 10
+            else:
+                total2 += user.get_card(index).get_value()
+        return total2
+
+    def prompt_player_move(self):
+        decision = int(input("To hit enter 1 to stay enter 0:"))
+        if decision == 1:
+            self.get_card(self._player)
+        elif decision == 0:
+            while self.get_total(self._dealer) < 21 and self.get_total(self._dealer) < self.get_total(self._player):
+                self.get_card(self._dealer)
+        else:
+            print("Not a valid input.")
+
+        self.to_string()
+
+    def score_to_string(self, user):
+        if self.get_total(user) < 21:
+            print("Total:", self.get_total(user))
+        elif self.get_total(user) == 21:
+            print("Total:", self.get_total(user), "Blackjack")
+        else:
+            print("Total:", self.get_total(user), "Bust")
 
     def to_string(self):
-        print("Dealer")
-        print("Total:", self.get_total(self._dealer))
+        print("\nDealer")
+        self.score_to_string(self._dealer)
         for index in range(len(self._dealer.get_cards())):
             print(self._dealer.get_card(index).get_card_face(), end=" ")
         print("\n")
         for index in range(len(self._player.get_cards())):
             print(self._player.get_card(index).get_card_face(), end=" ")
-        print("\nTotal:", self.get_total(self._player))
+        print()
+        self.score_to_string(self._player)
         print("Player")
+
+        self.prompt_player_move()
+
 
 
 class Player:
