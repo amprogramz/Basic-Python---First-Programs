@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World JS</title>
+    <h2>Hello World</h2>
+    <p>These are a series of exercises from W3 Schools Im doing to learn JS.</p>
+    <script>
+        function changeTxt() {
+            document.getElementById("innerScript").innerHTML = "Hello World!"
+
+        }
+    </script>
+</head>
+<body>
+
+<h2>Light Bulb</h2>
+<p>This is an exercise that turns on and off a light using JS to change a html value. Img by W3 Schools.</p>
+<button
+    onclick="document.getElementById('myImage').src='https://www.w3schools.com/js/pic_bulbon.gif'">
+    Turn on the light</button>
+ <img id="myImage"
+      src="https://www.w3schools.com/js/pic_bulboff.gif"
+      style="width:100px">
+<button
+        onclick="document.getElementById('myImage').src='https://www.w3schools.com/js/pic_bulboff.gif'">Turn off.</button>
+
+<h2>Disappearing Text</h2>
+<p id="disappear">Make this text disappear.</p>
+<button type="button" onclick="document.getElementById('disappear').style.display='none'">Abra Cadabra!</button>
+<button type="button" onclick="document.getElementById('disappear').style.display='block'">Come Backazam!</button>
+
+<h2>Change Text With A Function From Header</h2>
+<p id="innerScript"></p>
+<script>
+    document.getElementById("innerScript").innerHTML = "Text from an inner script";
+</script>
+<button type="button" onclick="changeTxt()">Say Hello</button>
+</body>
+</html>

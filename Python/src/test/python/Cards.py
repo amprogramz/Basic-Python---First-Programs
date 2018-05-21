@@ -47,7 +47,7 @@ class BlackJack:
         return total2
 
     def prompt_player_move(self):
-        decision = int(input("To hit enter 1 to stay enter 0:"))
+        decision = int(input("To hit enter 1 to stay enter 0:\n\n\n\n\n\n"))
         if decision == 1:
             self.get_card(self._player)
         elif decision == 0:
@@ -66,8 +66,12 @@ class BlackJack:
         else:
             print("Total:", self.get_total(user), "Bust")
 
+    def cls(self):
+        print("\n" * 100)
+
     def to_string(self):
-        print("\nDealer")
+        self.cls()
+        print("Dealer")
         self.score_to_string(self._dealer)
         for index in range(len(self._dealer.get_cards())):
             print(self._dealer.get_card(index).get_card_face(), end=" ")
@@ -77,8 +81,8 @@ class BlackJack:
         print()
         self.score_to_string(self._player)
         print("Player")
-
         self.prompt_player_move()
+        print('\n .' * 6)
 
 
 
