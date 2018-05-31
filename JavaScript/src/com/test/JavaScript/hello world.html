@@ -41,5 +41,13 @@
 <button type="button" onclick="externalDocumentWriteEx()">Press With Caution</button>
 <button type="button" onclick="virus()">Get a Window Alert</button>
 <button type="button" onclick="consoleOutput()">Output to Console</button>
+<h2>Object Returned</h2>
+<p id="personObj"></p>
+<script>
+    //creating an object
+     var person = getPerson("Sam", "Schmidt", 50, "green");
+    document.getElementById("personObj").innerHTML = "name: " + person.fullName() +
+        "\nage: " + person.age;
+</script>
 </body>
 </html>

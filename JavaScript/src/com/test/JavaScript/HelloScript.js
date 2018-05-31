@@ -11,3 +11,19 @@ function virus(){
 function consoleOutput() {
     console.log("Hello World")
 }
+
+function getPerson(first, last, age, eyeColor)
+{
+    var person ={
+        firstName : first,
+        lastName : last,
+        age : age,
+        eyeColor : eyeColor,
+        fullName : function (){
+           return this.firstName + " " + this.lastName;
+        }
+    };
+
+    return person;
+
+}
