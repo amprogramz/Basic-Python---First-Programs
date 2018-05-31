@@ -12,6 +12,7 @@ function consoleOutput() {
     console.log("Hello World")
 }
 
+//an object can contain a function
 function getPerson(first, last, age, eyeColor)
 {
     var person ={

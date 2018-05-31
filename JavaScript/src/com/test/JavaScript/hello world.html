@@ -49,5 +49,13 @@
     document.getElementById("personObj").innerHTML = "name: " + person.fullName() +
         "\nage: " + person.age;
 </script>
+<h2>Button Events,
+    Displays Date</h2>
+<button onclick="document.getElementById('date').innerHTML = Date()">
+    Date and Time
+</button>
+<p id="date"></p>
+<button onclick="this.innerHTML = Date();" onmouseleave="this.innerHTML ='Date and Time on Button'">Date and Time on Button</button>
+
 </body>
 </html>
