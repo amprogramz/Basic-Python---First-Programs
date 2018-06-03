@@ -49,13 +49,34 @@
     document.getElementById("personObj").innerHTML = "name: " + person.fullName() +
         "\nage: " + person.age;
 </script>
-<h2>Button Events,
+<h2>Button Events,<br>
     Displays Date</h2>
 <button onclick="document.getElementById('date').innerHTML = Date()">
     Date and Time
 </button>
 <p id="date"></p>
 <button onclick="this.innerHTML = Date();" onmouseleave="this.innerHTML ='Date and Time on Button'">Date and Time on Button</button>
+<h2>Arrays</h2>
+<p id="array"></p>
+<button onclick="arrayObj.sortArray(); arrayObj.displayArray();">Sort Array</button>
 
+<button onclick="arrayObj.createArray(); arrayObj.displayArray();">Create Array</button>
+
+<script>
+    //function testArray() {
+        var arrayObj = {
+           array : ["cheese"],
+            createArray : function()  {
+                this.array.push("pineapple", "apple", "bananna");
+            },
+            sortArray : function() {
+                this.array.sort();
+            },
+            displayArray : function() {
+            document.getElementById('array').innerHTML = this.array.toString();
+            }
+        };
+   // }
+</script>
 </body>
 </html>
