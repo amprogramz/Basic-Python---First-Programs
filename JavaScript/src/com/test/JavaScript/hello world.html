@@ -78,5 +78,31 @@
         };
    // }
 </script>
+<h2>Array of Numbers</h2>
+<p id="numArray"></p>
+<button onclick="numArray.sortAscending()">Sort Ascending</button>
+<button onclick="numArray.sortDescending()">Sort Descending</button>
+<button onclick="numArray.populateRandom()">Populate</button>
+<script>
+    var numArray =
+        {
+            array : [],
+            populateRandom : function () {
+                this.array.push(Math.floor(Math.random() * 101));
+                this.display();
+            },
+            sortAscending : function () {
+                this.array.sort(function(a, b){return a - b});
+                this.display();
+            },
+            sortDescending : function () {
+                this.array.sort(function (a, b) {return b - a});
+                this.display();
+            },
+            display : function () {
+                document.getElementById('numArray').innerHTML = this.array.toString();
+            }
+        };
+</script>
 </body>
 </html>
