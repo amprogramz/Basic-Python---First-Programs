@@ -104,5 +104,41 @@
             }
         };
 </script>
+<h2>Number Guessing Game</h2>
+<p id="numOut">Guess a number between 0 and 100</p>
+<input id="numberIn" type="text">
+<br>
+<button type="button" onclick="numberGuessingGame.guess()">Guess</button>
+<button type="button" onclick="numberGuessingGame.setNumber()">Reset</button>
+<script>
+    var numberGuessingGame = {
+        number : Math.round(Math.random() * 101),
+        setNumber : function(){
+            this.number = Math.round(Math.random() * 101);
+        },
+        guess : function () {
+            var out, input;
+            out = document.getElementById('numOut');
+            out.innerHTML = "";
+            input = document.getElementById('numberIn').value;
+            try {
+                if (input == "") throw "Need to input something.";
+                if (isNaN(input)) throw "Not a number.";
+                input = Number(input);
+                if (input < 0 || input > 100) throw "Number needs to be between 0 and 100.";
+                if (input < this.number) throw "Number is to low, guess again.";
+                if (input > this.number) throw "Number is to high, guess again.";
+                if (input == this.number) {
+                    throw "Congratulations, the number was " + this.number + ".";
+                }
+            }
+            catch (result)
+            {
+                out.innerHTML = result;
+            }
+
+        }
+    };
+</script>
 </body>
 </html>
