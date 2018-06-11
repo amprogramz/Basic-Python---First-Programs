@@ -105,22 +105,34 @@
         };
 </script>
 <h2>Number Guessing Game</h2>
-<p id="numOut">Guess a number between 0 and 100</p>
-<input id="numberIn" type="text">
+<p id="numOut">Guess a number between 0 and 100.</p>
+
+<input  type="text" id="numberIn">
 <br>
-<button type="button" onclick="numberGuessingGame.guess()">Guess</button>
-<button type="button" onclick="numberGuessingGame.setNumber()">Reset</button>
+<button type="button" onclick="numberGuessingGame.guess('numOut', 'numberIn')">Guess</button>
+<button type="button" onclick="numberGuessingGame.setNumber('numOut', 'numberIn')">Reset</button>
+<br>
+
+<h2>Number Guessing Game 2</h2>
+<p id="numOut2">Guess a number between 0 and 100.</p>
+<form oninput="numberGuessingGame.guess('numOut2', 'numberIn2')">
+    <input  type="text" id="numberIn2">
+    <br>
+    <button type="button" onclick="numberGuessingGame.setNumber('numOut2', 'numberIn2')">Reset</button>
+</form>
 <script>
     var numberGuessingGame = {
         number : Math.round(Math.random() * 101),
-        setNumber : function(){
+        setNumber : function(numOut, numIn){
             this.number = Math.round(Math.random() * 101);
+            document.getElementById(numOut).innerHTML = "Guess a number between 0 and 100.";
+            document.getElementById(numIn).value = "";
         },
-        guess : function () {
+        guess : function(numOut,  numIn) {
             var out, input;
-            out = document.getElementById('numOut');
+            out = document.getElementById(numOut);
             out.innerHTML = "";
-            input = document.getElementById('numberIn').value;
+            input = document.getElementById(numIn).value;
             try {
                 if (input == "") throw "Need to input something.";
                 if (isNaN(input)) throw "Not a number.";
@@ -131,6 +143,7 @@
                 if (input == this.number) {
                     throw "Congratulations, the number was " + this.number + ".";
                 }
+
             }
             catch (result)
             {
