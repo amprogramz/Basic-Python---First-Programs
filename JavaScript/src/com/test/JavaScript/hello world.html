@@ -154,25 +154,10 @@
     };
 </script>
 <h2>Dynamic Parameter Function</h2>
-<p id="sum"></p>
-<input type="text" id="sumIn">
-<button onclick="findNumbers(document.getElementById('sumIn').value)">Sum</button>
+<p id="sum">Click sum get the sum of 1, 5, 6, 10</p>
+<button onclick="sum(1,5,6,10)" >Sum</button>
 <script>
-    function findNumbers(input) {
-        var output = [];
-        var index ;
-        var index2 = 0 ;
-
-        var blankSpace = /\s/g;
-        while(blankSpace.test(input) == true) {
-            index = blankSpace.lastIndex;
-            output.push(input.substring(index2, index));
-            index2 = index;
-
-        }
-        //output.push(input.substring(index, input.lastIndexOf(input)));
-        document.getElementById('sum').innerHTML = output;
-    }
+    //This accepts a dynamic range of arguments
     function sum() {
         var index = 0;
         var sum = 0;
@@ -182,6 +167,58 @@
         //return sum;
         document.getElementById('sum').innerHTML = sum;
     }
+</script>
+<h2>Avg Using a regExp to Search for Spaces in Input</h2>
+<p id="avg">Enter a list of numbers separated by spaces to return the avg.</p>
+<input type="text" id="avgIn">
+<button onclick="avg(document.getElementById('avgIn').value)">Avg</button>
+<script>
+    function findNumbers(input) {
+        var blankSpaceIndex = [];
+        var output = [];
+        var index = 0 ;
+        var index2 = 0 ;
+
+        var blankSpace = /\s/g;
+        //checks and stores location of blank spaces
+        while(blankSpace.test(input) == true) {
+            blankSpaceIndex.push(blankSpace.lastIndex);
+        }
+        for(; index < blankSpaceIndex.length + 1; index++){
+
+            if (blankSpaceIndex[index] != null) {
+                output.push(input.substring(index2, blankSpaceIndex[index] -1));
+                index2 = blankSpaceIndex[index];
+            } else{
+                output.push(input.substring(index2));
+            }
+        }
+        return output;
+    }
+    function avg(input){
+        var numbers = findNumbers(input);
+        var sum = 0;
+        var avg = 0;
+        index = 0;
+        try {
+            for (; index < numbers.length; index++) {
+                if(isNaN(numbers[index]) ) {
+                    throw "Need to input numbers separated by spaces"
+                }else {
+                    sum += Number(numbers[index]);
+                }
+            }
+            avg = sum / numbers.length;
+            throw avg;
+
+        }catch(out)
+        {
+            document.getElementById('avg').innerHTML = out;
+        }
+
+        //document.getElementById('avg').innerHTML = avg;
+    }
+
 </script>
 </body>
 </html>
