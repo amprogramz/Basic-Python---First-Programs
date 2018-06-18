@@ -153,5 +153,35 @@
         }
     };
 </script>
+<h2>Dynamic Parameter Function</h2>
+<p id="sum"></p>
+<input type="text" id="sumIn">
+<button onclick="findNumbers(document.getElementById('sumIn').value)">Sum</button>
+<script>
+    function findNumbers(input) {
+        var output = [];
+        var index ;
+        var index2 = 0 ;
+
+        var blankSpace = /\s/g;
+        while(blankSpace.test(input) == true) {
+            index = blankSpace.lastIndex;
+            output.push(input.substring(index2, index));
+            index2 = index;
+
+        }
+        //output.push(input.substring(index, input.lastIndexOf(input)));
+        document.getElementById('sum').innerHTML = output;
+    }
+    function sum() {
+        var index = 0;
+        var sum = 0;
+        for (; index < arguments.length; index++){
+            sum += Number(arguments[index]);
+        }
+        //return sum;
+        document.getElementById('sum').innerHTML = sum;
+    }
+</script>
 </body>
 </html>
