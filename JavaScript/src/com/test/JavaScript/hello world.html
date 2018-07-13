@@ -199,7 +199,7 @@
         var numbers = findNumbers(input);
         var sum = 0;
         var avg = 0;
-        index = 0;
+        var index = 0;
         try {
             for (; index < numbers.length; index++) {
                 if(isNaN(numbers[index]) ) {
@@ -215,10 +215,79 @@
         {
             document.getElementById('avg').innerHTML = out;
         }
-
-        //document.getElementById('avg').innerHTML = avg;
     }
+</script>
+<h2>Form Object</h2>
+<form >
+    <p id="createAccount">Please fill out the form.</p>
+    Email:<input type="email"  id="email" required> <br>
+    User Name:<input type="text" id="UserName"> <br>
+    Password:<input type="password" id="Password"> <br>
+    <button type="button"  onclick="createUser()" >Create Account</button>
+    <p id="accountCreated">The account created should appear here.</p>
+</form>
 
+<script>
+    //Technically they recommend sending this to a server via php by setting an action to the form
+    // , but im creating a basic object for now because i don't know php yet. also the submit resets
+    // the page so ill use a button.
+    function user(email, userName, password) {
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+    }
+    function createUser(){
+
+        var email = document.getElementById('email').valueOf();
+        var username = document.getElementById('UserName').valueOf();
+        var password = document.getElementById('Password').valueOf();
+        var user1 = user(email, username, password);
+
+        document.getElementById('accountCreated').innerHTML = "" + user1.email;
+    }
+</script>
+
+<style>
+    #container {
+        width: 400px;
+        height: 400px;
+        position: relative;
+        background: yellow;
+    }
+    #animate {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background: blueviolet;
+    }
+</style>
+<p>
+    <button onclick="animateIt()">animate</button>
+</p>
+<div id="container">
+    <div id="animate">
+    </div>
+</div>
+<script>
+    function animateIt(){
+        var animationObj = document.getElementById("animate");
+        var position = 0;
+        var direction = true;
+        var id = setInterval(frame, 1);
+        function frame(){
+            if(direction === true && position <= 350){
+                position++;
+                animationObj.style.top = position + 'px';
+                animationObj.style.left = position + 'px';
+                if(position == 350){direction = false;}
+            }else if (direction === false && position >= 0){
+                position--;
+                animationObj.style.top = position + 'px';
+                animationObj.style.left = position + 'px';
+                if (position == 0){direction = true;}
+            }
+        }
+    }
 </script>
 </body>
 </html>
